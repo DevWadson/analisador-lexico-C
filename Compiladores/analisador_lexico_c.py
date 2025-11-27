@@ -32,13 +32,11 @@ class Token:
     def __repr__(self):
         return f"Token({self.tipo!r}, {self.valor!r}, linha={self.linha}, col={self.coluna})"
 
-
 class ErroLexico(Exception):
     def __init__(self, mensagem, linha, coluna):
         super().__init__(f"[Linha {linha}, Coluna {coluna}] {mensagem}")
         self.linha = linha
         self.coluna = coluna
-
 
 class AnalisadorLexico:
     def __init__(self, codigo: str):
@@ -158,10 +156,8 @@ class AnalisadorLexico:
             self.coluna = len(linhas[-1]) + 1
         self.pos += len(texto)
 
-
 def analisar_codigo(codigo: str) -> List[Token]:
     return list(AnalisadorLexico(codigo).analisar())
-
 
 def main(argv):
     if len(argv) < 2:
@@ -177,7 +173,6 @@ def main(argv):
             print(t)
     except ErroLexico as e:
         print("Erro Léxico:", e)
-
 
 if __name__ == "__main__":
     main(sys.argv)
